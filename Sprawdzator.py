@@ -3,18 +3,14 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 
-
 scopes = [
     'https://www.googleapis.com/auth/spreadsheets',
     'https://www.googleapis.com/auth/drive'
 ]
 
 credentials = Credentials.from_service_account_file(
-    r'C:\Users\Mateusz\Desktop\Pytong\sf\Sprawdzator-f28421168a94.json',
     scopes=scopes
 )
-
-
 
 
 def butcher(temp):
@@ -40,11 +36,9 @@ print(guildList)
 
 
 
-
-gc = gspread.authorize(credentials)
-gc = gspread.service_account()
-sh = gc.open("Sprawdzator")
-worksheet = sh.worksheet("2020")
+gc = gspread.service_account(filename=r'C:\Users\Mateusz\Desktop\Pytong\sf\Sprawdzator-f28421168a94.json')
+sh = gc.open_by_key('1sXUYwHXLNuudf_OZsVocAXeQD72ZoBu6uZjZWJfG4Vk')
+worksheet = sh.worksheet('2020')
 
 
 # print(sh.sheet1.get('A1'))
